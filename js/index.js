@@ -1,4 +1,3 @@
-const 정답 = "PIZZA";
 
 let attempts = 0;
 let index = 0;
