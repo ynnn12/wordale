@@ -1,4 +1,4 @@
-const 정답 = "PIZZA";
+const 정답 = "MELON";
 
 let attempts = 0;
 let index = 0;
