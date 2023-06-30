@@ -51,6 +51,7 @@ const handleBackspace = () => {
   }
   if (index !== 0) index -= 1;
 };
+
 const handleKeydown = (event) => {
   const key = event.key.toUpperCase();
   const keyCode = event.keyCode;
@@ -68,19 +69,24 @@ const handleKeydown = (event) => {
   }
 };
 
-const handleClick = (event) => {
-  const key = event.target.dataset.key.toUpperCase();
-  const thisBlock = document.querySelector(
-    `.board-block[data-index='${attempts}${index}']`
-  );
-
-  thisBlock.innerText = key;
-  index += 1;
-};
-
 window.addEventListener("keydown", handleKeydown);
 
-const keyboardBlocks = document.querySelectorAll(".keyboard-block");
-keyboardBlocks.forEach((block) => {
-  block.addEventListener("click", handleClick);
+const handleClick = document.querySelectorAll(
+  ".keyboard-block, .keyboard-long-block"
+);
+handleClick.forEach((block) => {
+  const key = block.dataset.key.toUpperCase();
+  block.addEventListener("click", () => {
+    if (key === "ENTER") {
+      handleEnterKey();
+    } else if (key === "BACKSPACE") {
+      handleBackspace();
+    } else {
+      const thisBlock = document.querySelector(
+        `.board-block[data-index='${attempts}${index}']`
+      );
+      thisBlock.innerText = key;
+      index += 1;
+    }
+  });
 });
